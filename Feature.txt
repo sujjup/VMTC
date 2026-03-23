@@ -1,0 +1,67 @@
+Feature 29691
+Refined Description:
+A foundational feature of the new SMS for the ACMA is to process new apparatus licence applications via a workflow that supports various capabilities to allow the applicant to prepare and submit the licence application as well as support the ACMA's reception, review, assessment and issue of the apparatus licence.  The tasks necessary to deliver this feature include configuring workflow states and transitions, configuring various forms and automated form behaviours as well as enabling dynamic movement between submission, review, approval, and rejection stages.
+The SMS must be able to communicate with the ACMA’s customer records system (CRM) via the integration mechanism identified in the Integrations Epic, to identify clients and their relevant contact details. The SMS must be able to check whether the client ID provided identifies as fee exempt or concession and respond accordingly. 
+
+The new SMS must support licence applications lodged by individuals (non-APs) and accredited persons (APs). The SMS must also support applications being prepared by ACMA staff, when required. Licensees can submit their licence applications using the online ACMA electronic application forms. AP submissions can be lodged as both individual and bulk submissions via XML payloads as well as supporting applicants to upload XLSX files containing multiple stations or links to their application forms. APs must have the ability to save their submissions for later or submit them immediately. APs must have the option to flag them for manual assessment. Both Non-AP Applicants and APs must also retain the ability to withdraw submissions prior to review by the ACMA, with records of withdrawal accessible by ACMA staff (showing that an application was withdrawn, when it was withdrawn and who withdrew it).  Non-AP Applicants will need to contact the ACMA to facilitate withdrawal of an application. For bulk applications, the SMS must adhere to the maximum response time outlined in Schedule 4 of the Head Contract.
+Before the application enters into the review stage by the ACMA, the SMS must ensure the application obeys the field and technical validations specified in the corresponding PBIs.  The SMS must be able to calculate the appropriate charges for the applicant and must be able to calculate the licence tax based on the service, subservice and other technical parameters (e.g. bandwidth, power, etc.) and any associated discounts and pre-defined formulae.  The consideration charge (when relevant) and licence tax PDF document(s) for the issue of the licence must be sent to the licensee or designated payment office via the appropriate communications preference.  The same invoice details must be transmitted to the ACMA's Financial Management Information System (FMIS) known as Technology One via the integration mechanism specified in the Integrations Epic. The FMIS must return the payment confirmation to the SMS via an automated mechanism described in the Integrations Epic.  The payment confirmation must update the licence status accordingly to confirm that the financial obligations for issuing the new licence have been met.
+The reception and review process of the apparatus licence application (both AP submissions and non-AP applications) by the ACMA is comprehensive and adaptable.  Licence applications are queued for review in a table view where ACMA staff can examine all applications and assign resources accordingly.  ACMA staff must have the flexibility to switch between non-AP applications and AP electronic submissions that are both non manual and manual assessment as needed. ACMA staff must be able to escalate applications for additional internal team review and make decisions to grant licences with special conditions or refuse the applications outright. All licence applications, including non-AP applications and AP submissions (both non-manual and Manual assessments) are to be handled by designated staff including a table view that provides visibility into all applications awaiting processing as well as a column describing the state of the application. This should include the functionality to extract relevant information to provide it to a delegate for consideration or flag manual and non-manual assessments for escalation internally. 
+The system should support effective communication between applicants, licensees, accredited persons and the ACMA.  A two-way messaging mechanism must be included with the SMS, facilitating discussions between the APs and the ACMA staff around technical details of specific applications. All communications must be logged and accessible, ensuring transparency and traceability throughout the review process. This feature would support collaborative decision-making and helps resolve complex licensing scenarios efficiently. As the SMS will be the system of record, it will keep all communications attached to the licence and kept in accordance with the ACMA’s record keeping requirements. Finally, the new SMS must support robust document handling, record-keeping and validation. Applicants must be able to upload files in acceptable formats. The SMS must provide clear error messages guiding users to correct any issues. Together, these capabilities would form a cohesive and efficient apparatus licensing workflow that meets both operational and compliance needs.
+
+Refined Acceptance Criteria:
+1.	Workflow Configuration and Client Master Data 
+o	The SMS must allow configuration of workflow states and transitions, enabling dynamic movement between submission, review, approval, rejection or issue of all types of licences. Forms must be configurable with automated behaviours (e.g. field visibility, validation rules).
+o	As part of the licence application, the system automatically populates details of the client based on the ClientID provided by the agreed integration with the Dataverse
+o	The SMS must identify, and flag exempt and concession clients based on predefined rules. The SMS must ensure that applications from clients that are fee exempt or fee concession are treated in accordance with the relevant statutory requirements.  This criterion depends on the completion of the integration with Dataverse/CRM. - 7.a. Integrations
+o	Errors in apparatus licence application (e.g. missing required fields) must trigger clear, actionable error messages.
+2.	Application Preparation and Submission
+Accredited Persons (APs)
+o	APs must be presented with their dashboard after authenticating via ACMA assist.
+o	APs must be able to create an application by populating the relevant fields. 
+o	APs must be able to prepare and save licence applications for later or submit them immediately.
+o	The SMS must support paying application fees as part of the submission process.
+o	The SMS must support both individual and bulk AP submissions via XML payloads
+o	The SMS must support the ability to upload station/link lists to the form application via XLSX file uploads.
+o	Uploaded files must be validated for the agreed schema, filetypes, syntax and content; invalid files must trigger descriptive error messages 
+o	APs must be able to withdraw submissions prior to ACMA review.
+o	For bulk submissions, the SMS must meet the maximum response time defined in Schedule 4 of the Head Contract.
+o	All AP submission XML payloads should be recorded in a database.
+Non-AP Applications
+o	Applicants can prepare and submit licence applications using the web forms in the SMS.
+o	The SMS must support paying application fees as part of the submission process. 
+o	Completed licence applications are received in the SMS where they will be assessed by an ACMA Frequency Assigner or licensing staff.
+
+
+Pre-Review Validations and Financial Calculations
+o	Before entering the review stage, all licence applications must pass all field and technical validations as defined in the PBIs:
+1.	AP submissions must pass all relevant technical validations. AP submissions marked for Manual Assessment must be checked and approved by an ACMA Frequency Assigner.
+2.	Non-AP licence applications must pass the field validations to ensure their completeness. The frequency assignment task will be performed by an ACMA Frequency Assigner.
+o	For Non-AP licence applications where ACMA frequency assignment is required, the SMS must calculate the tax, issue or consideration charge accurately post submission and assessment. This criterion depends on the completion of the Billing features. - 3.b. Billing
+o	For AP electronic submissions, the SMS must calculate the tax and FAC charges accurately post submission and assessment. This criterion depends on the completion of the Billing features. - 3.b. Billing
+o	For Fee Schedule, Appendix C, licences,  licence tax must be calculated accurately by applying the correct licence service, subservice, tax rate with respective to the fee density area in the Apparatus Licence Fee Schedule, and factor in  the channel bandwidth, power, location (Fee Density Area) and any relevant discounts along with the predefined formulae. The Assigned Tax Formula can be found in Appendix C of the Apparatus Licence Fee Schedule. This criterion depends on the completion of the Billing features. - 3.b. Billing
+o	For Fee Schedule, non-Appendix C, licences, the licence tax must be calculated accurately using amounts listed and the methodologies specified for the relevant licence type in the Radiocommunications (Transmitter Licence Tax) Determination 2025. 
+o	The SMS must generate accurate PDF invoice documents for both charges and licence tax and send them via e-mail or post to the licensee or designated payment office. This criterion depends on the completion of the integration with ACMA's electronic correspondence service. - 7.a. Integrations
+o	Invoice details must be transmitted to FMIS (Technology One) via the designated integration mechanism. This criterion depends on the integration with Technology One/Dataverse. - 7.a. Integrations
+o	Upon receiving payment confirmation from the FMIS, the SMS must automatically update the licence status to reflect payment of the invoice. This criterion depends on the integration with Technology One/Dataverse. - 7.a. Integrations
+3.	Application Review and Decision-Making
+o	Both AP submissions and Non-AP Licence applications must be displayed in a table view for ACMA staff, with filtering and sorting capabilities.
+o	All licence applications must be assignable for internal team review.
+o	Staff must be able to grant licenses with conditions and/or advisory notes or refuse applications, with decisions logged and auditable. The ability to log decisions should include being able to upload documents and leave notes as to what has been changed/approved and by whom. 
+o	AP submissions must be handled by designated ACMA Frequency Assigners, with visibility into application stages and processing queues.
+4.	Communication and Collaboration
+o	The SMS must support effective communication between relevant parties.
+o	the SMS must support two-way communication between APs and ACMA staff.
+o	Messages must be linked to specific applications and stored in a communications trail.
+o	All communications must be timestamped and accessible for audit and review.
+o	The SMS must notify users of new messages and allow attachments where relevant. This criterion depends on the integration with ACMA's electronic correspondence service. - 7.a. Integrations
+o	Errors in message delivery or access must be efficient and accurate with retry options and alerts.
+o	Document Handling and Validation
+o	Applicants must be able to upload supporting documents in acceptable formats (e.g. PDF, docx, xlsx, csv, png, jpeg, etc.).
+o	Missing document attachments where required will trigger clear error messages with guidance for resolution.
+o	All uploaded documents must be stored and linked to the relevant application.
+o	The system must support audit trails for changes.
+5.	Miscellaneous
+o	The SMS must automatically generate call-signs according to ITU criteria for terrestrial, maritime ship station and aeronautical systems, where required for the specific licence type, upon the initial licence issue (e.g. A-01A state).
+o	The SMS must automatically generate licence numbers according to the ACMA's method upon initial licence issue (e.g. A-01A).
+o	Licences should be able to be flagged as s.152 licences (or other cases) prior to issue (i.e. not visible on the RRL).  
+
