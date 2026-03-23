@@ -1,0 +1,43 @@
+Feature,Scenarios,Acceptance criteria,Test case No,Test case,Steps,Expected result,Pass/Fail,Comments
+F29691 - New Appartus Licence application ,AP user to prepare and lodge an New apparatus licence application using the webforms,"•	where required the AP can create a new client ID through the form (via integration with Dataverse)",1,Verify AP user is able to initiate the new appartus application form - and able to create new client Id  ,"Pre - Requirement: AP user login to application and is on dashboad.
+
+Steps:
+
+1. Select New Appartus licence application - tile - Form will open
+2. Select Exisitng client = No
+3. Enter the new client details in the form",Ap user should able to intiate the application - and should able to provide the new client details - and Sysytem should generate Customer/Client ID should display ,,
+,,"•	the AP can save the application as a draft and return to that draft at a later date",2,Verify AP user is able to initiate the new appartus application form - and save the application in Draft status,"Pre - Requirement: AP user login to application and is on dashboad.
+
+Steps:
+
+1. Select New Appartus licence application - tile - Form will open
+2. Enter the data in some fields in the form
+3. Select Save button",Ap user should able to intiate the application form - and should able to save the application in the Draft status,,
+,,"•	where the validation is not successful the system provides appropriate feedback on fields that have not passed validation",3,Verify that the field validation error messages in the application form are triggered correctly - up on selecting the Validate button,"Pre - Requirement: AP user login to application and is on dashboad.
+
+Steps:
+
+1. Select New Appartus licence application - tile - Form will open
+2. Donot enter the data in some of the field in the form
+3. Select Validate button
+4. For some of fields enter some More than Maximum characters limit in the fields",Error messages for the fields should display correctly for the fields up on selecting the validate button,,
+,,"•	where the validation is successful the AP can submit the application",4,Verify that the AP user is able to initiate the  New apparatus licence applciation form and fill all the details and submit successfully,"Pre - Requirement: AP user login to application and is on dashboad.
+
+Steps:
+
+1. Select New Appartus licence application - tile - Form will open
+2. Enter the  valid details in the form for the client ID
+3. Select Validate button - Ensure No error message should display
+4. Proceed to the  Stations form - and enter all the  valid details in the form
+5. Select Validate button -  Ensure No error message should display
+6. Select Submit button
+",Ap user should able to complete the form with out any error message and should able to submit the form successfully. Status of the application should display as Submitted status,,
+,,,,,,,,
+,AP user have ability to Upload XML file - to apply New Apparatus licence,,1,Verify AP - user is able to upload the XML file from the dashboad - for the new appartus licence aplication,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,AP user able to submit the Uploaded XML - for New appartus licence,,,,,,,
+,,,,,,,,
+,,,,,,,,
