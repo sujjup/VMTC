@@ -1,0 +1,178 @@
+PBI 52081 -The licence period needs to accept Years, Months and days and in each case the value should be a whole number
+AC:
+Form:
+ 1. In the New and Vary form, the licence period needs to accept Years, Months and days and in each case the value should be a whole number.
+ 2. The system should provide an error message that informs the user to use the months or days multiplier where a whole number of years is not provided.
+Tax calculation:
+ 1. The application correctly calculates the pro rata component of the licence tax based on the licence term input
+ 2. The application provides an interface that displays correct tax amount
+ 3. The application provides an interface that displays how the tax amount was calculated 
+    a. including the pro-rata value used for calculation.
+
+PBI 30197 - [Annual licence taxes] Proportion the tax for the number of days of the licence period.
+AC: 
+Tax calculation:
+1. The application correctly calculates the pro rata component of the licence tax
+2. The application provides an interface that displays correct tax amount
+3. The application provides an interface that displays how the tax amount was calculated 
+   a.including the pro-rata value used for calculation.
+Error handling:
+The application should generate a log to include any errors for troubleshooting or bug tracking purposes
+
+PBI 52085 - [Apparatus Licence] Initial licence term different to the renewal term
+AC: 
+Tax calculation
+1. User can enter start date and end date in the New/Vary form and a licence period.
+2. If user enters end date which is different to licence term, Initial issue period of the licence will be different to licence term.
+3. The application correctly calculates the pro rata component of the licence tax correctly for the initial issue.
+4. The application provides an interface that displays correct tax amount
+5. The application provides an interface that displays how the tax amount was calculated 
+    a.including the pro-rata value used for calculation.
+
+PBI 27838 - [Ext Users] XLSX: Upload a single XLSX file of stations/links to a licence application
+AC:
+1. I am able to apply for a new apparatus licences for a licensee using a web form but by uploading a single XLSX file for the various stations that need to be included with the application. 
+2. Where applicable, I am able to upload attachments in alignment with &
+3. The field validations are applied appropriately. 
+  Example: this time uploading a spreadsheet with missing and incorrect station details and no callsigns (see first screenshot below),
+  the issue that the entire licence application, including base station with missing and incorrect details still validates, 
+  and the licence application can still be submitted.
+   Seems like there is an issue with field validation. 
+
+PBI 27849 - [Int Users] Ability to take a decision to grant a licence with caveats
+AC:
+1. Licensing Officer/frequency assigner can add special conditions or advisory notes to a licence before making a decision to grant the licence
+2. Special conditions or advisory notes can be added or deleted at all assessment steps
+3. The actual licence generation and viewing will be addressed
+
+PBI 41311 - [All Users] Generate Licence PDF
+AC:
+The system should be able to generate the licence in PDF format once the licence has been granted to a licensee
+
+PBI 27843 - [Int User] Review an application along with any attachments that are appended to the application
+AC:
+1. I am able to click on an application and be able to review the information associated with the licence application
+2. I am able to download the attachments appended to the licence application and read them. 
+3. All applications should be able to be edited by ACMA staff however any changes made by ACMA staff should be recorded in the audit log.
+4. I should be able to add or remove attachments 
+
+PBI 27836 - [All Users][WORKFLOW] New - Configure workflow and state machines
+AC:
+1. I receive the licensing application in the P-01 Pending status from the applicant.
+2. The application moves through the various workflow states and transitions as per the diagram and that the appropriate state is applied at each stage.
+3. I produce either an A-01 Licence or I-01 or archive application.
+4. I can pause the application process at designated opportunities to P-99.
+5. If needed, I can reject the application moves to state I-02: Application Archived.
+
+If I reject the application the I-02 state is created. It should be noted that this is a decision to not grant a licence under section 100 and
+ as such the required correspondence will need to be generated (refusal letter and reasons for refusal).
+S. No. 
+
+    Step -                          Machine Code - Label -            Result
+
+1 -Licence application in preparation - D-01 - Application in draft  -OK
+
+2 - Initially validated application   - P-01 - Pending assessment  - OK
+
+3 - Assigner review                   - P-02  -Pending ACMA review  -This state results when ‘AP Submission: manual assessment’ 
+								    option is selected, or the ACMA audit option is selected.(from P-01)
+
+4 - Invoice issue charge              - P-03 -Pending payment(charge) - This state results when ‘Non AP submission’
+                                             ACMA review                 option is selected (from P-01)
+
+5 - Application rejected and archived - I-02  - Application rejected
+
+6 - Issue licence                     - A-01A  - Licence not granted  -This state results when the ‘Proceed to section 100 decision‘
+									 option is selected (from P-01)
+
+7 - Issue licence                     - A-01   - Licence granted     - OK
+
+8 - Application on pause              - P-99   - Application paused   - Can pause the application (P-99) from the A-01A state.
+
+9 - Archive application               - I-01    - Application archived - OK
+
+PBI 54627 - S152 flag for new licence
+AC:
+New Apparatus licence application form will include a dropdown "Publish Data" with values Yes and No - S152 
+This data to be passed to ACMA to make decision on publishing in RRL.
+
+PBI 27854 - [System] Receive Payment Updates from FMIS (TechOne)
+AC:
+1. System receives regular payment updates from TechOne.
+2. Invoices are marked as "Paid" or "Not Paid".  SMS does not track any parallel processes such as Debt Management (e.g. Payment Plans, etc.).
+3. Licence payment status is updated to "Granted" upon successful payment completion.
+
+
+PBI 27855 - [System] Update Licence status upon receipt of valid code from FMIS (TechOne)
+AC:
+1. System verifies the validity of payment confirmation code received from TechOne.
+2. Upon validation, the licence status is updated to Granted.
+3. Confirmation of issued licence is sent to the client.
+
+PBI 27839 - [Ext Users] XML: Apply for multiple licenses for different clients using a single file
+AC:
+I am able to apply for a new apparatus licences for multiple licenses & licensee using a single XML file that will be uploaded via the Spectrum-E portal. 
+Where applicable, I am able to upload attachments in alignment with #29798
+The field validations currently working for New Licence Applications is working for XML upload as well. 
+Once uploaded, the applications will come up on the tlist view that the APs can view individually. 
+The application will also have the documents uploaded within the application.
+
+PBI 29798 - [All Users] Upload supporting documents and attachments with the application
+AC:
+1. Uploaded document should be uploaded to and attached to the licence application. 
+2. Only the mentioned document types should be allowed to be uploaded.
+
+PBI 29860 - [All Users] Field and Technical validations
+AC:
+1. I am able to review if the information I am providing aligns with the field and technical validation rules provided by ACMA (test case to contain validation results for both in form field and technical validations).
+2. If it passes all field and technical validations, the application should be submitted to the system. 
+3. If it passes all field validations, but not the technical validations, the AP can mark it for Manual Assessment and be able to submit the application.  
+4. If it does not pass the field validations, it should not proceed to either technical validations or for further assessment. 
+
+PBI 27851 - [System] Generate Licence Tax Invoice for the licence to be issued taking into account the requisite licence tax calculation formulae
+AC:
+1. System generates a tax invoice upon licence issuance, using predefined licence tax formulae
+2. Generated invoices are accurate, compliant and available for client review and payment
+
+PBI 30199 - [Generate invoice] Combine the total charge and total licence tax amounts for 1 licence - new issue or vary
+AC:
+New issue
+Licence charge calculation:
+1. The application should automatically combine the total charge and total licence tax amounts for 1 newly issued licence 
+2. The application provides an interface that displays the charge amount and how the tax amount was calculated 
+
+Generation of invoice:
+
+1. Invoices are automatically generated as part of the licence workflow.
+2.Download feature/link available for the user to click on to manually generate an invoice including a PDF copy.
+3. The invoice should be generated in PDF format.
+4. The generated invoice should contain the correct total charge amount and total licence tax amount for 1 newly issued licence 
+
+Error handling:
+
+1. The application should generate a log to include any errors for troubleshooting or bug tracking purposes (for Spectrum Center)
+
+PBI 30158 - [Appendix C] View the inputs to the Assigned licence tax formula
+AC:
+1. Actor clicks on the on the "Calculate Tax and Fees" transition event for a licence record in the Spectrum-E GUI and generates the taxes for the licence record selected.
+2. Spectrum-E applies the current formula being used to calculate the assigned licence tax for that invoice.
+3. The system generates a view of the values used in the calculation and the actor checks that these values are correct
+4. Reference calculation made outside of the system match the results calculated by the system.
+
+
+PBI 32671 - [System] Check if the applicant/prospective licensee is an exempt client
+AC:
+1. Upon establishing the ClientID, the SMS caches the details of the client (prospective licensee) from the Dataverse (CRM) including if they are registered as exempt from paying licence tax and charges.
+2. If the client is a fee exempt client, then any charges or taxes (fees) that would normally apply must be recorded to track lost revenue however no invoices are sent as the value would be $0.00
+    a. The calculation should come up as it would be for a non-exempt client. 
+    b. This amount should be stored and used to track "Lost revenue", in case a specific report is required to developed later on.
+    c. BUT, no invoice should be generated and sent to the client
+
+PBI 27852 - [System] Send invoice PDF to the relevant entity
+AC:
+1. System is able to send the generated invoice to the licensee and other nominated representative(s) 
+2. Invoice includes all the necessary billing details and payment instructions.
+    a. A record of the invoice correspondence is stored in the SMS's correspondence datastore. 
+       This allows the recipient to view the correspondence in case the e-mail notification goes to their spam folder,
+       or they accidentally delete it.
+
